@@ -1,32 +1,45 @@
+import React, { useState } from "react";
+import '../App.css';
 
+function AddTransaction(props) {
+  const [transactionItem, setTransactionItem] = useState("");
+  const [amount, setAmount] = useState("");
+  const [transactionType, setTransactionType] = useState("");
 
-import {useState} from "react";
-function AddTransaction (props) { 
+  const add = () => {
+    props.add(transactionItem, amount, transactionType);
+  };
 
-    const [transactionItem, setTransactionItem]= useState('');
-    const [amount, setAmount]= useState('');
-    const [transactionType, setTransactionType]=('');
-
-    const add= (()=>{
-    props.add(transactionItem, amount,transactionType);
-
-    })
-
-    return (
-        <div>
-<h1> Add a new transaction</h1>
-
-<input type="text" placeholder="Enter item" onChange={(event)=> setTransactionItem(event.target.value)}/> <br></br>
-<input type="text" placeholder="Enter amount" onChange={(event)=> setAmount(event.target.value)}/> 
-<br></br>
-<select onChange={(event)=> setTransactionType(event.target.value)}>
-    <br></br>
-    <option>Income</option>
-    <option>Expense </option>
-</select><br></br>
-<button onClick= {add}>Add a transaction</button>
-        </div>
-    )
+  return (
+    <div className="add-transaction-container">
+      <h1>Add a new transaction</h1>
+      <input
+        type="text"
+        placeholder="Enter item"
+        onChange={(event) => setTransactionItem(event.target.value)}
+        className="animated-input"
+      />
+      <br />
+      <input
+        type="text"
+        placeholder="Enter amount"
+        onChange={(event) => setAmount(event.target.value)}
+        className="animated-input"
+      />
+      <br />
+      <select
+        onChange={(event) => setTransactionType(event.target.value)}
+        className="animated-input"
+      >
+        <option>Income</option>
+        <option>Expense</option>
+      </select>
+      <br />
+      <button onClick={add} className="add-button">
+        Add a transaction
+      </button>
+    </div>
+  );
 }
 
-export default AddTransaction 
+export default AddTransaction;
